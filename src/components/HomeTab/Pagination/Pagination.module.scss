@@ -23,8 +23,8 @@
   font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background-color: var(--accent-btn-color);
-  border: 1px solid var(--accent-btn-color);
+  background-color: var(--accent-background-color);
+  border: 1px solid var(--accent-background-color);
   color: var(--secondary-text-color);
   transition: all var(--cubic) var(--animation-time);
   outline: transparent;
@@ -32,8 +32,7 @@
 
 .Button:hover,
 .Button:focus {
-  color: var(--btn-color);
-  background-color: var(--accent-btn-color);
+  background-color: #6470f5;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
