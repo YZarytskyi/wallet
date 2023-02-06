@@ -12,7 +12,6 @@
 
 .Button {
   margin-bottom: 10px;
-
   font-family: var(--main__font-family);
   text-align: center;
   width: 33px;
@@ -24,15 +23,11 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background-color: var(--accent-background-color);
-  border: 1px solid var(--accent-background-color);
   color: var(--secondary-text-color);
   transition: all var(--cubic) var(--animation-time);
   outline: transparent;
-}
 
-.Button:hover,
-.Button:focus {
-  background-color: #6470f5;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  &:disabled {
+    background-color: rgb(130, 62, 255, 0.3);
+  }
 }
