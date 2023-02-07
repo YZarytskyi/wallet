@@ -1,18 +1,18 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.scss';
 import * as yup from 'yup';
-import 'react-datetime/css/react-datetime.css';
 import { SelectField } from './SelectField';
 import {
   createTransaction,
   editTransaction,
   getCategories,
 } from 'redux/finance/financeOperations';
+import 'react-datetime/css/react-datetime.css';
 
 export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
   const dispatch = useDispatch();
@@ -53,18 +53,6 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
     });
   };
 
-  const showCategoriesList = () => {
-    return categoriesList
-      .filter(item => item.name !== 'Income')
-      .map(item => {
-        return (
-          <option key={item.id} value={item.id}>
-            {item.name}
-          </option>
-        );
-      });
-  };
-
   const getParseNewDate = () => {
     const today = new Date();
     let output = `${today.getFullYear()}-${
@@ -77,7 +65,7 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
     return output;
   };
 
-  let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
+  let patternTwoDigiTsAfterComma = /^\d+(\.\d{0,2})?$/;
   const commonStringValidator = yup
     .number()
     .positive()
@@ -86,7 +74,7 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
       'The amount should be a decimal with maximum two digits after comma',
       val => {
         if (val !== undefined) {
-          return patternTwoDigisAfterComma.test(val);
+          return patternTwoDigiTsAfterComma.test(val);
         }
         return true;
       }
