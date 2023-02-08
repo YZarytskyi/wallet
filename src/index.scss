@@ -4,20 +4,17 @@
 
 html {
   box-sizing: border-box;
-  width: 100vw;
   overflow-x: hidden;
   background-color: #e7eaf2;
   scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100%;
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
   margin: 0;
   padding: 0;
   background: white;
-  backdrop-filter: blur(25px);
   overflow-x: hidden;
   @media screen and (min-width: 768px) {
     background-image: url(./assets//images/Background/desktopBg.png);
@@ -33,7 +30,10 @@ body {
 }
 
 #root {
-  min-height: 100%;
+  @media screen and (min-width: 768px) {
+    backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.4);
+  }
 }
 
 *,

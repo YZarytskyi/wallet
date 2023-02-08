@@ -23,7 +23,6 @@ export const createTransaction = createAsyncThunk(
   async function createNewTransaction(transData, thunkAPI) {
     try {
       const res = await auth.post('/api/transactions', transData);
-      thunkAPI.dispatch(closeModal());
       return res.data;
     } catch (error) {
       console.log('error!');

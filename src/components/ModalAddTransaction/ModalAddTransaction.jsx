@@ -1,10 +1,9 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
-import css from './ModalAddTransaction.module.scss';
 import * as yup from 'yup';
 import { SelectField } from './SelectField';
 import {
@@ -13,6 +12,7 @@ import {
   getCategories,
 } from 'redux/finance/financeOperations';
 import 'react-datetime/css/react-datetime.css';
+import css from './ModalAddTransaction.module.scss';
 
 export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
   const dispatch = useDispatch();
@@ -37,10 +37,6 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
       document.removeEventListener('keydown', onEscapeHandler);
     }
   }, []);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
 
   const categoriesList = useSelector(selectCategories);
 
@@ -89,6 +85,7 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
   });
 
   const handleSubmit = values => {
+    dispatch(closeModal());
     closeEditModal && closeEditModal();
 
     const id = transaction?.id;
@@ -111,10 +108,6 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
       ? transaction?.amount * -1
       : transaction?.amount;
 
-  const defaultCategory = categoriesList.find(
-    el => el.id === transaction?.categoryId
-  )?.name;
-
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop" onClick={clickOnBackdropHandler}>
       <section className={css.modalSection} id="myModal">
@@ -128,7 +121,7 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
         <Formik
           initialValues={{
             type: transaction?.type || 'EXPENSE',
-            categoryId: defaultCategory || '',
+            categoryId: '',
             amount: defaultAmount || '',
             transactionDate: transaction?.transactionDate || getParseNewDate(),
             comment: transaction?.comment || '',
@@ -252,6 +245,6 @@ export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
       </section>
       ,
     </div>,
-    document.querySelector('#modal')
+    document.body
   );
 };

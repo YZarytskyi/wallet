@@ -13,18 +13,6 @@
   }
 }
 
-.mainContainer::before {
-  @media screen and (min-width: 768px) {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 100%;
-    height: calc(100% - 80px);
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px);
-  }
-}
-
 .left {
   position: relative;
   margin-bottom: 32px;
